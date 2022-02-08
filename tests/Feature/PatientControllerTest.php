@@ -26,7 +26,7 @@ class PatientControllerTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->json('POST', '/api/patients', [
+            ->postJson('/api/patients', [
                 'first_name' => 'Sarah',
                 'last_name' => 'Connor',
                 'date_of_birth' => '1963-05-13',
@@ -52,7 +52,7 @@ class PatientControllerTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->json('GET', "/api/patients/{$patient->id}");
+            ->getJson("/api/patients/{$patient->id}");
 
         $response
             ->assertOk()
@@ -66,14 +66,14 @@ class PatientControllerTest extends TestCase
             ]);
     }
 
-    public function test_it_lists_patients()
+    public function test_it_indexes_patients()
     {
         $user = User::factory()->create();
         Patient::factory()->times(3)->create();
 
         $response = $this
             ->actingAs($user)
-            ->json('GET', '/api/patients');
+            ->getJson('/api/patients');
 
         $response
             ->assertOk()
@@ -99,7 +99,7 @@ class PatientControllerTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->json('PATCH', "/api/patients/{$patient->id}", [
+            ->patchJson("/api/patients/{$patient->id}", [
                 'email' => 'sarah.connor@example.com',
             ]);
 
@@ -122,7 +122,7 @@ class PatientControllerTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->json('PATCH', "/api/patients/{$patient->id}", [
+            ->patchJson("/api/patients/{$patient->id}", [
                 'first_name' => '',
             ]);
 
@@ -138,7 +138,7 @@ class PatientControllerTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->json('DELETE', "/api/patients/{$patient->id}");
+            ->deleteJson("/api/patients/{$patient->id}");
 
         $response
             ->assertStatus(Response::HTTP_METHOD_NOT_ALLOWED);
