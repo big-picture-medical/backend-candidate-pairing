@@ -1,13 +1,22 @@
 ## Prerequisites 
 
-- [Composer](https://getcomposer.org)
 - [Docker](https://www.docker.com/)
 
 ## Setup
 
 1. Clone this repo to your local machine.
 2. Copy over the env `cp .env.example .env`.
-3. With PHP and composer installed on your host, install dependencies via `composer install`.
+3. Install dependencies...
+
+```sh
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v $(pwd):/var/www/html \
+    -w /var/www/html \
+    laravelsail/php80-composer:latest \
+    composer install --ignore-platform-reqs
+```
+
 4. Build and start the Laravel Sail docker container with `./vendor/bin/sail up -d`.
 5. Run the test suite and it should be passing with `./vendor/bin/sail test`.
 
