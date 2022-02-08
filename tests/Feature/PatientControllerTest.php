@@ -20,7 +20,7 @@ class PatientControllerTest extends TestCase
         $response->assertUnauthorized();
     }
 
-    public function test_it_creates_a_patient()
+    public function test_it_stores_a_patient()
     {
         $user = User::factory()->create();
 
