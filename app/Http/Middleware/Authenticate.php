@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class Authenticate extends Middleware
 {
     /**
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      */
     protected function redirectTo($request): ?string
     {
