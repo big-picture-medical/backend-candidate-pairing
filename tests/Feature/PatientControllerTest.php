@@ -11,13 +11,23 @@ class PatientControllerTest extends TestCase
 {
     public function test_it_requires_authentication()
     {
-        $response = $this
-            ->json('POST', '/api/patients', [
-                'first_name' => 'The',
-                'last_name' => 'Terminator',
-            ]);
+        $patient = Patient::factory()->create();
 
-        $response->assertUnauthorized();
+        $this->getJson('/api/patients')
+            ->assertUnauthorized();
+
+        $this->postJson('/api/patients', [
+            'first_name' => 'The',
+            'last_name' => 'Terminator',
+        ])->assertUnauthorized();
+
+        $this->getJson("/api/patients/{$patient->id}")
+            ->assertUnauthorized();
+
+        $this->patchJson("/api/patients/{$patient->id}", [
+            'first_name' => 'The',
+            'last_name' => 'Terminator',
+        ])->assertUnauthorized();
     }
 
     public function test_it_stores_a_patient()
