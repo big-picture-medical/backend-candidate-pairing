@@ -4,15 +4,11 @@ namespace Tests\Feature;
 
 use App\Models\Patient;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class PatientControllerTest extends TestCase
 {
-    use RefreshDatabase;
-
     public function test_it_requires_authentication()
     {
         $response = $this
