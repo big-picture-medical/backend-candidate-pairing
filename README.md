@@ -26,7 +26,6 @@ docker run --rm \
 * Knowledge of Laravel features and the appropriate usage (this isn't "Laravel Bingo", so don't feel you need to show off everything you know if it doesn't suit the tasks)
 * Simple, readable code
 * Tests as documentation
-* Git hygiene
 
 ## Good to know
 
